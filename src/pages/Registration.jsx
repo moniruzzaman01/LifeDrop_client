@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
+import { use, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -19,9 +19,12 @@ import { useForm, Controller } from "react-hook-form";
 import { ChevronDownIcon } from "lucide-react";
 import { BLOOD_GROUPS, DISTRICTS, DIVISIONS, UPAZILAS } from "../lib/constant";
 import { toast } from "sonner";
+import { AuthContext } from "../context/auth/context";
+import axiosInstance from "../hooks/useAxios";
 
 export default function Registration() {
   const [open, setOpen] = useState(false);
+  const { createUser } = use(AuthContext);
   const [selectedDivision, setSelectedDivision] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
@@ -33,10 +36,13 @@ export default function Registration() {
   } = useForm({
     defaultValues: {},
   });
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
+      await Promise.all([
+        createUser(values.email, values.password),
+        axiosInstance.post("/users/create", values),
+      ]);
       toast.success("User created successfully!!!");
-      console.log("Donor Info:", values);
     } catch (error) {
       toast.error("Something went wrong with error: " + error.message);
     }
