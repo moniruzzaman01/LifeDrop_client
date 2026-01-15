@@ -4,6 +4,7 @@ import { AuthContext } from "./context";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export default function Provider({ children }) {
@@ -12,6 +13,9 @@ export default function Provider({ children }) {
 
   const createUser = async (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const loginUser = async (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   useEffect(() => {
@@ -29,6 +33,7 @@ export default function Provider({ children }) {
     user,
     createUser,
     globalLoading,
+    loginUser,
   };
 
   return <AuthContext value={authConfig}>{children} </AuthContext>;

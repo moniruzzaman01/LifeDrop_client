@@ -3,20 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { use } from "react";
+import { AuthContext } from "../context/auth/context";
 
 export default function Login() {
+  const { loginUser } = use(AuthContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
-      toast.success("Login successful!");
-      console.log("Login Info:", values);
+      await loginUser(values.email, values.password);
+      toast.success("Login successful!!!");
     } catch (error) {
-      toast.error("Something went wrong: " + error.message);
+      toast.error("Something went wrong with error: " + error.message);
     }
   };
 
