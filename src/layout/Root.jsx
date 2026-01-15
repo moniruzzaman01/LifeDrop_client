@@ -1,19 +1,11 @@
-import { useEffect } from "react";
+import { use } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
+import { ThemeContext } from "../contextApis/theme/context";
 
 export default function Root() {
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    localStorage.theme = document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
-  };
+  const { toggleTheme } = use(ThemeContext) || {};
+
   return (
     <div>
       <div
