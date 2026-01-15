@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import axiosInstance from "../../hooks/useAxios";
 
 export default function Provider({ children }) {
   const [user, setUser] = useState(null);
@@ -19,9 +20,12 @@ export default function Provider({ children }) {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        setUser(currentUser);
+        const { data } = await axiosInstance.get(`/users/${currentUser.email}`);
+        if (data) {
+          setUser(data.data);
+        }
       }
 
       setGlobalLoading(false);
