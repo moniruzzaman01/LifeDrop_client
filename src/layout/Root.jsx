@@ -1,7 +1,7 @@
 import { use } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
-import { ThemeContext } from "../contextApis/theme/context";
+import { ThemeContext } from "../context/theme/context";
 
 export default function Root() {
   const { toggleTheme } = use(ThemeContext) || {};
