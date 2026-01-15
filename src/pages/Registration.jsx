@@ -240,6 +240,15 @@ export default function Registration() {
         </form>
 
         {/* Footer */}
+        <div className="text-center space-y-2">
+          <p className="text-xs text-muted-foreground">Have an account?</p>
+          <a
+            href="/login"
+            className="text-sm font-medium text-primary hover:underline"
+          >
+            Go Back To Save Life
+          </a>
+        </div>
         <p className="text-xs text-muted-foreground text-center">
           Your data will only be used for blood donation purposes.
         </p>
