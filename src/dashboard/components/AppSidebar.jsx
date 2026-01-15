@@ -1,6 +1,6 @@
 import { Frame, Map, PieChart } from "lucide-react";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/NavUser";
+import { NavProjects } from "@/dashboard/components/nav-projects";
+import { NavUser } from "@/dashboard/components/NavUser";
 import {
   Sidebar,
   SidebarContent,

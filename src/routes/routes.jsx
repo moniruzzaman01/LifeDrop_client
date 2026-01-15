@@ -4,6 +4,8 @@ import Root from "../layout/Root";
 import Registration from "../pages/Registration";
 import Login from "../pages/Login";
 import Dashboard from "../layout/Dashboard";
+import Landing from "../dashboard/pages/Landing";
+import Users from "../dashboard/pages/Users";
 
 const routes = createBrowserRouter([
   {
@@ -18,7 +20,16 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     Component: Dashboard,
-    children: [],
+    children: [
+      {
+        index: true,
+        Component: Landing,
+      },
+      {
+        path: "users/admins",
+        Component: Users,
+      },
+    ],
   },
 ]);
 

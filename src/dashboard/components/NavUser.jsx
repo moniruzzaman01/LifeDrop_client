@@ -25,12 +25,19 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { use } from "react";
-import { AuthContext } from "../context/auth/context";
+import { AuthContext } from "../../context/auth/context";
+import { useNavigate } from "react-router";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  const { user } = use(AuthContext) || {};
+  const { user, logOut } = use(AuthContext) || {};
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logOut().then(() => {
+      navigate("/login");
+    });
+  };
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -88,7 +95,7 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
               <LogOut />
               Log out
             </DropdownMenuItem>

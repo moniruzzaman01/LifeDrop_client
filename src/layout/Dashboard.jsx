@@ -12,12 +12,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "../components/AppSidebar";
+import { AppSidebar } from "@/dashboard/components/AppSidebar";
 import { Outlet } from "react-router";
 import { use } from "react";
 import { ThemeContext } from "../context/theme/context";
 import { AuthContext } from "../context/auth/context";
-import DashboardSkeleton from "../components/DashboardSkeleton";
+import DashboardSkeleton from "@/dashboard/components/DashboardSkeleton";
+import BgArt from "../dashboard/components/BgArt";
 
 export default function Dashboard() {
   const { toggleTheme } = use(ThemeContext);
@@ -39,7 +40,7 @@ export default function Dashboard() {
       </div>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 border-b">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -61,7 +62,8 @@ export default function Dashboard() {
             </Breadcrumb>
           </div>
         </header>
-        <div>
+        <div className="p-6">
+          <BgArt />
           <Outlet />
         </div>
       </SidebarInset>

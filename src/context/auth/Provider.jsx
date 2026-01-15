@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import axiosInstance from "../../hooks/useAxios";
 
@@ -17,6 +18,9 @@ export default function Provider({ children }) {
   };
   const loginUser = async (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  };
+  const logOut = () => {
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -38,6 +42,7 @@ export default function Provider({ children }) {
     createUser,
     globalLoading,
     loginUser,
+    logOut,
   };
 
   return <AuthContext value={authConfig}>{children} </AuthContext>;
