@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { use, useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -22,6 +22,8 @@ import { toast } from "sonner";
 
 export default function Registration() {
   const [open, setOpen] = useState(false);
+  const [selectedDivision, setSelectedDivision] = useState(null);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
 
   const {
     register,
@@ -31,7 +33,6 @@ export default function Registration() {
   } = useForm({
     defaultValues: {},
   });
-
   const onSubmit = (values) => {
     try {
       toast.success("User created successfully!!!");
@@ -87,6 +88,117 @@ export default function Registration() {
               {...register("avatar")}
               placeholder="https://example.com/avatar.jpg"
             />
+          </div>
+          {/* Password and Phone */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <Label>Password</Label>
+              <Input
+                type="password"
+                placeholder="••••••••••"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must have at least 6 characters",
+                  },
+                })}
+              />
+              {errors.password && (
+                <p className="text-sm text-destructive">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+            <div className="space-y-1">
+              <Label>Phone Number</Label>
+              <Input
+                type="tel"
+                {...register("phone", { required: true })}
+                placeholder="+88017 1234 5678"
+              />
+            </div>
+          </div>
+          {/* Location */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-1">
+              <Label>Division</Label>
+              <Controller
+                name="division"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select
+                    onValueChange={(division) => {
+                      field.onChange(division);
+                      setSelectedDivision(division);
+                    }}
+                  >
+                    <SelectTrigger className="w-full cursor-pointer">
+                      <SelectValue placeholder="Select Division" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {DIVISIONS.map((division) => (
+                        <SelectItem key={division} value={division}>
+                          {division}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
+            <div className="space-y-1">
+              <Label>District</Label>
+              <Controller
+                name="district"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select
+                    onValueChange={(district) => {
+                      field.onChange(district);
+                      setSelectedDistrict(district);
+                    }}
+                  >
+                    <SelectTrigger className="w-full cursor-pointer">
+                      <SelectValue placeholder="Select District" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {selectedDivision &&
+                        DISTRICTS[selectedDivision].map((district) => (
+                          <SelectItem key={district} value={district}>
+                            {district}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
+            <div className="space-y-1">
+              <Label>Upazila</Label>
+              <Controller
+                name="upazila"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange}>
+                    <SelectTrigger className="w-full cursor-pointer">
+                      <SelectValue placeholder="Select Upazila" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {selectedDistrict &&
+                        UPAZILAS[selectedDistrict].map((upazila) => (
+                          <SelectItem key={upazila} value={upazila}>
+                            {upazila}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
           </div>
           {/* Blood Group + DOB */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -151,84 +263,6 @@ export default function Registration() {
                 />
               </div>
             </div>
-          </div>
-          {/* Location */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-1">
-              <Label>Division</Label>
-              <Controller
-                name="division"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full cursor-pointer">
-                      <SelectValue placeholder="Select Division" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {DIVISIONS.map((division) => (
-                        <SelectItem key={division} value={division}>
-                          {division}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            </div>
-            <div className="space-y-1">
-              <Label>District</Label>
-              <Controller
-                name="district"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full cursor-pointer">
-                      <SelectValue placeholder="Select District" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {DISTRICTS.map((district) => (
-                        <SelectItem key={district} value={district}>
-                          {district}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            </div>
-            <div className="space-y-1">
-              <Label>Upazila</Label>
-              <Controller
-                name="upazila"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full cursor-pointer">
-                      <SelectValue placeholder="Select Upazila" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {UPAZILAS.map((upazila) => (
-                        <SelectItem key={upazila} value={upazila}>
-                          {upazila}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            </div>
-          </div>
-          {/* Phone */}
-          <div className="space-y-1">
-            <Label>Phone Number</Label>
-            <Input
-              type="tel"
-              {...register("phone", { required: true })}
-              placeholder="+88017 1234 5678"
-            />
           </div>
           {/* Submit */}
           <Button
