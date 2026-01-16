@@ -18,7 +18,7 @@ import { use } from "react";
 import { ThemeContext } from "../context/theme/context";
 import { AuthContext } from "../context/auth/context";
 import DashboardSkeleton from "@/dashboard/components/DashboardSkeleton";
-import BgArt from "../dashboard/components/BgArt";
+import BgArt from "../components/BgArt";
 
 export default function Dashboard() {
   const { toggleTheme } = use(ThemeContext);
@@ -62,9 +62,11 @@ export default function Dashboard() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="p-6">
+        <div className="relative p-6 overflow-hidden">
           <BgArt />
-          <Outlet />
+          <div className="min-h-[87vh]">
+            <Outlet />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
