@@ -2,7 +2,6 @@ import { use } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
 import { ThemeContext } from "../context/theme/context";
-import BgArt from "../components/BgArt";
 
 export default function Root() {
   const { toggleTheme } = use(ThemeContext) || {};
@@ -17,12 +16,7 @@ export default function Root() {
           🩸
         </div>
       </div>
-      <div className="relative overflow-hidden">
-        <BgArt />
-        <div className=" min-h-screen">
-          <Outlet />
-        </div>
-      </div>
+      <Outlet />
       <Toaster />
     </div>
   );

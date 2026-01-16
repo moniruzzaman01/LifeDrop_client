@@ -6,30 +6,38 @@ export default function BgArt() {
       <div className="absolute top-1/3 -left-40 size-112 rounded-full bg-red-600/10 blur-3xl" />
       <svg
         className="absolute inset-0 w-full h-full "
-        viewBox="0 0 1000 700"
+        viewBox="0 -100 1000 800"
         fill="none"
       >
         <path
-          className="opacity-[0.15]"
-          d="M50 350 C200 150, 450 600, 950 300"
+          d="M-150 300 
+     L200 300 
+     L240 260 
+     L260 340 
+     L280 280 
+     L320 300 
+     L700 300"
           stroke="rgb(220 38 38)"
-          strokeWidth="1.2"
+          strokeWidth="1"
+          opacity="0.15"
+          fill="none"
+          transform="translate(240 80)"
         />
+        <defs>
+          <radialGradient id="bloodFade" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stopColor="rgb(220 38 38)" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="rgb(220 38 38)" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
         <path
-          className="opacity-[0.12]"
-          d="M150 600 C300 400, 500 200, 800 500"
-          stroke="rgb(185 28 28)"
-          strokeWidth="0.8"
-        />
-        <path
-          className="opacity-[0.1]"
           d="M500 120
-             C460 200, 400 260, 400 330
-             C400 410, 460 460, 500 460
-             C540 460, 600 410, 600 330
-             C600 260, 540 200, 500 120 Z"
-          stroke="rgb(220 38 38)"
-          fill="rgb(220 38 38)"
+       C460 200, 400 260, 400 330
+       C400 410, 460 460, 500 460
+       C540 460, 600 410, 600 330
+       C600 260, 540 200, 500 120 Z"
+          fill="url(#bloodFade)"
+          transform="translate(0 -20)"
         />
       </svg>
     </div>
