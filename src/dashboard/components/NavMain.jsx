@@ -27,19 +27,19 @@ const items = [
     subItems: [
       {
         title: "Admins",
-        url: "users/admins",
+        url: "users?role=admin",
       },
       {
         title: "Volunteers",
-        url: "users/volunteers",
+        url: "users?role=volunteer",
       },
       {
         title: "Active Users",
-        url: "users/active",
+        url: "users?status=active",
       },
       {
         title: "Blocked Users",
-        url: "users/blocked",
+        url: "users?status=blocked",
       },
     ],
   },

@@ -13,8 +13,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/dashboard/components/AppSidebar";
-import { Outlet } from "react-router";
-import { use } from "react";
+import { Link, Outlet, useLocation, useSearchParams } from "react-router";
+import { Fragment, use } from "react";
 import { ThemeContext } from "../context/theme/context";
 import { AuthContext } from "../context/auth/context";
 import DashboardSkeleton from "@/dashboard/components/DashboardSkeleton";
@@ -23,6 +23,11 @@ import BgArt from "../components/BgArt";
 export default function Dashboard() {
   const { toggleTheme } = use(ThemeContext);
   const { globalLoading } = use(AuthContext);
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+  const segments = pathname.split("/").filter(Boolean);
+  const role = searchParams.get("role");
+  const status = searchParams.get("status");
 
   if (globalLoading) {
     return <DashboardSkeleton />;
@@ -49,15 +54,37 @@ export default function Dashboard() {
             />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
+                {segments.map((segment, idx) => {
+                  const lastIdx = segments.length - 1;
+                  return (
+                    <Fragment key={idx}>
+                      <BreadcrumbItem className="hidden md:block capitalize">
+                        <Link to={segment == "dashboard" ? "" : segment}>
+                          {segment}
+                        </Link>
+                      </BreadcrumbItem>
+                      {lastIdx !== idx && (
+                        <BreadcrumbSeparator className="hidden md:block" />
+                      )}
+                    </Fragment>
+                  );
+                })}
+                {role && (
+                  <>
+                    <BreadcrumbSeparator className="hidden md:block" />
+                    <BreadcrumbItem className="hidden md:block capitalize">
+                      <Link to={`?role=${role}`}>{role}</Link>
+                    </BreadcrumbItem>
+                  </>
+                )}
+                {status && (
+                  <>
+                    <BreadcrumbSeparator className="hidden md:block" />
+                    <BreadcrumbItem className="hidden md:block capitalize">
+                      <Link to={`?sdfsd=${status}`}>{status}</Link>
+                    </BreadcrumbItem>
+                  </>
+                )}
               </BreadcrumbList>
             </Breadcrumb>
           </div>

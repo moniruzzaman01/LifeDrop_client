@@ -26,7 +26,7 @@ const routes = createBrowserRouter([
         Component: Landing,
       },
       {
-        path: "users/active",
+        path: "users",
         Component: Users,
       },
     ],
