@@ -1,5 +1,3 @@
-import UnderConstruction from "../components/UnderConstruction";
-
 export default function Home() {
-  return <UnderConstruction />;
+  return <div></div>;
 }

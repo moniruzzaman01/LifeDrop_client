@@ -11,11 +11,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    children: [
-      { index: true, Component: Home },
-      { path: "login", Component: Login },
-      { path: "registration", Component: Registration },
-    ],
+    children: [{ index: true, Component: Home }],
   },
   {
     path: "/dashboard",
@@ -31,6 +27,8 @@ const routes = createBrowserRouter([
       },
     ],
   },
+  { path: "login", Component: Login },
+  { path: "registration", Component: Registration },
 ]);
 
 export default routes;

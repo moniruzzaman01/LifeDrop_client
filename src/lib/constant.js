@@ -652,3 +652,8 @@ export const UPAZILAS = {
     "Shyamnagar",
   ],
 };
+export const NAVLINKS = [
+  { name: "Home", to: "/" },
+  { name: "Donation Requests", to: "#donation-requests" },
+  { name: "Funding", to: "#funding" },
+];
