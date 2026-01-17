@@ -6,6 +6,7 @@ import axiosInstance from "../hooks/useAxios";
 
 export default function Home() {
   const [donationRequests, setDonationRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -24,11 +25,14 @@ export default function Home() {
           if (data?.data?.length) {
             setDonationRequests(data.data);
           }
+          setLoading(false);
         })
         .catch((error) => {
+          setLoading(false);
           throw new Error(error.message);
         });
     } catch (error) {
+      setLoading(false);
       throw new Error(error.message);
     }
   }, []);

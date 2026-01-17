@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/theme/context";
 import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/auth/context";
-import HomepageSkeleton from "../components/HomepageSkeleton";
+import HomepageSkeleton from "../components/skeletons/HomepageSkeleton";
 import Footer from "../components/Footer";
 
 export default function Root() {
