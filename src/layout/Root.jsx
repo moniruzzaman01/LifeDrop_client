@@ -1,4 +1,4 @@
-import { use } from "react";
+import { Fragment, use } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
 import { ThemeContext } from "../context/theme/context";
@@ -6,6 +6,7 @@ import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/auth/context";
 import HomepageSkeleton from "../components/HomepageSkeleton";
+import Footer from "../components/Footer";
 
 export default function Root() {
   const { toggleTheme } = use(ThemeContext) || {};
@@ -16,19 +17,24 @@ export default function Root() {
   }
 
   return (
-    <div>
-      <div
-        onClick={toggleTheme}
-        className="flex justify-center cursor-pointer absolute bottom-0 right-0"
-      >
-        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
-          🩸
+    <Fragment>
+      <div className=" min-h-screen flex flex-col justify-between">
+        <div
+          onClick={toggleTheme}
+          className="flex justify-center cursor-pointer absolute bottom-0 right-0"
+        >
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+            🩸
+          </div>
         </div>
+        <div>
+          <Topbar />
+          <Navbar />
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Topbar />
-      <Navbar />
-      <Outlet />
       <Toaster />
-    </div>
+    </Fragment>
   );
 }
