@@ -65,6 +65,9 @@ export default function Navbar() {
                       <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild className="cursor-pointer">
+                        <Link to="/my-donation-requests">My DR</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild className="cursor-pointer">
                         <Link to="/dashboard">Profile</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem
