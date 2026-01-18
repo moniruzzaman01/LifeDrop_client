@@ -5,11 +5,7 @@ import DonationRequestsSkeleton from "../components/skeletons/DonationRequestsSk
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
 
 export default function AllDRsPage() {
