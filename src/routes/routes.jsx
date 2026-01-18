@@ -8,6 +8,7 @@ import Landing from "../dashboard/pages/Landing";
 import Users from "../dashboard/pages/Users";
 import MyDRPage from "../pages/MyDRPage";
 import CreateDRPage from "../dashboard/pages/CreateDRPage";
+import AllDRPage from "../pages/AllDRsPage";
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const routes = createBrowserRouter([
       {
         path: "create-donation-request",
         Component: CreateDRPage,
+      },
+      {
+        path: "all-donation-requests",
+        Component: AllDRPage,
       },
     ],
   },

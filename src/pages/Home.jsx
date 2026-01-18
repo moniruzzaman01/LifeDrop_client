@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import DonationRequests from "../components/DonationRequests";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import axiosInstance from "../hooks/useAxios";
 
@@ -20,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      axiosInstance("/dr/all?status=pending")
+      axiosInstance("/dr/all?status=pending&sort=date") //date->donationDate
         .then(({ data }) => {
           if (data?.data?.length) {
             setDonationRequests(data.data);
@@ -45,9 +45,12 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-foreground">
             Urgent Blood Requests
           </h2>
-          <p className=" capitalize flex items-center gap-2 cursor-pointer">
+          <Link
+            to="/all-donation-requests"
+            className=" capitalize flex items-center gap-2 cursor-pointer"
+          >
             view more <ArrowRight className=" h-5 w-5" />
-          </p>
+          </Link>
         </div>
         <DonationRequests donationRequests={donationRequests.slice(0, 6)} />
       </section>
