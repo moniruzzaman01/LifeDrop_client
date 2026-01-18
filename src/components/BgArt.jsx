@@ -1,8 +1,7 @@
 export default function BgArt() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none min-h-screen ">
+    <div className="absolute inset-0 z-0 pointer-events-none ">
       <div className="absolute -top-20 -right-20 size-80 rounded-full bg-red-500/10 blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 size-96 rounded-full bg-red-700/10 blur-3xl" />
       <div className="absolute top-1/3 -left-40 size-112 rounded-full bg-red-600/10 blur-3xl" />
       <svg
         className="absolute inset-0 w-full h-full "
