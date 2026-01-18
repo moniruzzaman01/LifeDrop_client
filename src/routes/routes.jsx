@@ -7,6 +7,7 @@ import Dashboard from "../layout/Dashboard";
 import Landing from "../dashboard/pages/Landing";
 import Users from "../dashboard/pages/Users";
 import MyDRPage from "../pages/MyDRPage";
+import CreateDRPage from "../dashboard/pages/CreateDRPage";
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const routes = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "my-donation-requests", Component: MyDRPage },
+      {
+        path: "create-donation-request",
+        Component: CreateDRPage,
+      },
     ],
   },
   {

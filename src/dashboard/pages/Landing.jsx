@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import StatCard from "../components/StatCard";
+import { Link } from "react-router";
 
 export default function Landing() {
   return (
@@ -22,10 +23,19 @@ export default function Landing() {
         </p>
       </div>
       <div>
-        <Button className=" cursor-pointer">
-          <PlusCircle className="size-4" />
-          Create Donation Request
+        <Button className=" cursor-pointer" asChild>
+          <Link to="/create-donation-request">
+            <PlusCircle className="size-4" />
+            Create DR
+          </Link>
         </Button>
+        {/* <Dialog>
+          <DialogTrigger className="flex items-center gap-2 px-3 py-1 rounded-md bg-primary text-primary-foreground hover:bg-primary-hover transition font-medium text-sm capitalize cursor-pointer">
+            <PlusCircle className="size-4" />
+            Create DR
+          </DialogTrigger>
+          <CreateDR />
+        </Dialog> */}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         <StatCard title="Total Donors" value="1,248" icon={Users} />

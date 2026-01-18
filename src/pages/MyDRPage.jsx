@@ -1,10 +1,11 @@
 import { PlusCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth/context";
 import axiosInstance from "../hooks/useAxios";
 import DonationRequests from "../components/DonationRequests";
 import DonationRequestsSkeleton from "../components/skeletons/DonationRequestsSkeleton";
+import CreateDR from "../components/CreateDR";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 export default function MyDRPage() {
   const { user } = use(AuthContext);
@@ -28,15 +29,12 @@ export default function MyDRPage() {
   }
 
   return (
-    <section id="donation-requests" className="max-w-7xl mx-auto px-4 py-6">
+    <section className="max-w-7xl mx-auto px-4 py-6">
       <div className=" flex items-baseline justify-between mb-6">
         <h2 className="text-2xl font-bold text-foreground">
           My Donation Requests
         </h2>
-        <Button className=" cursor-pointer">
-          <PlusCircle className="size-4" />
-          Create DR
-        </Button>
+        <CreateDR />
       </div>
       <DonationRequests donationRequests={myDonationRequest} />
     </section>
