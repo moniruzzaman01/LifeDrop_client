@@ -5,15 +5,11 @@ import DonationRequestsSkeleton from "../components/skeletons/DonationRequestsSk
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
 
 export default function AllDRsPage() {
-  const dataPerPage = 9;
+  const dataPerPage = 6;
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [startIndex, setStartIndex] = useState(0);
@@ -56,12 +52,14 @@ export default function AllDRsPage() {
         <h2 className="text-2xl font-bold text-foreground capitalize">
           All Donation Requests
         </h2>
-        <DonationRequests
-          donationRequests={donationRequests.slice(
-            startIndex,
-            startIndex + dataPerPage
-          )}
-        />
+        <div className=" min-h-[68vh]">
+          <DonationRequests
+            donationRequests={donationRequests.slice(
+              startIndex,
+              startIndex + dataPerPage
+            )}
+          />
+        </div>
 
         <Pagination>
           <PaginationContent className="gap-3">
