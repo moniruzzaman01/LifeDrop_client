@@ -19,9 +19,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logOut().then(() => {
-      navigate("/login");
-    });
+    logOut();
   };
 
   return (

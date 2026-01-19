@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router";
 import routes from "./routes/routes.jsx";
 import AuthProvider from "./context/auth/Provider.jsx";
 import ThemeProvider from "./context/theme/Provider.jsx";
+import { Toaster } from "sonner";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,5 +14,6 @@ createRoot(document.getElementById("root")).render(
         <RouterProvider router={routes} />
       </AuthProvider>
     </ThemeProvider>
+    <Toaster />
   </StrictMode>
 );
