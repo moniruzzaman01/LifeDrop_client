@@ -661,3 +661,10 @@ export const NAVLINKS = [
   { name: "Donation Requests", to: "/#donation-requests" },
   { name: "Funding", to: "/#funding" },
 ];
+export const STATUS_STYLES = {
+  pending: "bg-amber-500/15 text-amber-600 border border-amber-500/30",
+  "in-progress": "bg-sky-500/15 text-sky-600 border border-sky-500/30",
+  done: "bg-emerald-500/15 text-emerald-600 border border-emerald-500/30",
+  canceled: "bg-rose-500/15 text-rose-600 border border-rose-500/30",
+  removed: "bg-zinc-500/15 text-zinc-500 border border-zinc-500/30",
+};

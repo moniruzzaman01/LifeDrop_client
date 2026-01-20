@@ -13,6 +13,7 @@ import AuthGuard from "./AuthGuard";
 import RoleGuard from "./RoleGuard";
 import { ROLES } from "../lib/constant";
 import Unauthorized from "../components/Unauthorized";
+import DRs from "../dashboard/pages/DRs";
 
 const routes = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const routes = createBrowserRouter([
               {
                 path: "users",
                 Component: Users,
+              },
+              {
+                path: "donation-requests",
+                Component: DRs,
               },
             ],
           },

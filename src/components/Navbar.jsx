@@ -66,7 +66,7 @@ export default function Navbar() {
                         <Link to="/my-donation-requests">My DR</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild className="cursor-pointer">
-                        <Link to="/dashboard">Profile</Link>
+                        <Link to="/dashboard">Dashboard</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={handleLogout}
