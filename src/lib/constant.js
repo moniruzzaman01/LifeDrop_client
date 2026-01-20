@@ -1,4 +1,8 @@
 export const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+export const ROLES = {
+  ADMIN: "admin",
+  VOLUNTEER: "volunteer",
+};
 export const DIVISIONS = [
   "Barishal",
   "Chattogram",
