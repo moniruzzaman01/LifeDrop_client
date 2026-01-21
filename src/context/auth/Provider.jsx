@@ -25,20 +25,36 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        const { data } = await axiosInstance.get(`/users/${currentUser.email}`);
-        if (data) {
-          setUser(data.data);
+      try {
+        if (currentUser) {
+          const { data: response } = await axiosInstance.post(
+            "/auth/generate-token",
+            {
+              email: currentUser.email,
+            },
+          );
+          if (response.data) {
+            const { user: loggedInUser, token } = response.data;
+            localStorage.setItem("token", token);
+            setUser(loggedInUser);
+          }
+        } else {
+          localStorage.removeItem("token");
+          setUser(null);
         }
+      } catch (error) {
+        logOut();
+        localStorage.removeItem("token");
+      } finally {
+        setGlobalLoading(false);
       }
-
-      setGlobalLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
   const authConfig = {
     user,
+    setUser,
     createUser,
     globalLoading,
     loginUser,

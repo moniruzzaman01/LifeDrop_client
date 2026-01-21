@@ -1,6 +1,5 @@
 import { Fragment, use } from "react";
 import { Outlet } from "react-router";
-import { Toaster } from "sonner";
 import { ThemeContext } from "../context/theme/context";
 import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
@@ -34,7 +33,6 @@ export default function Root() {
         </div>
         <Footer />
       </div>
-      <Toaster />
     </Fragment>
   );
 }

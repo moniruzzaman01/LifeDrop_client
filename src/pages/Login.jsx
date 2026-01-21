@@ -6,20 +6,25 @@ import { toast } from "sonner";
 import { use } from "react";
 import { AuthContext } from "../context/auth/context";
 import BgArt from "../components/BgArt";
+import { useNavigate } from "react-router";
+import axiosInstance from "../hooks/useAxios";
 
 export default function Login() {
   const { loginUser } = use(AuthContext);
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const onSubmit = async (values) => {
     try {
       await loginUser(values.email, values.password);
+      await axiosInstance(`/users/${values.email}`);
       toast.success("Login successful!!!");
+      navigate("/");
     } catch (error) {
       toast.error("Something went wrong with error: " + error.message);
     }
@@ -77,10 +82,11 @@ export default function Login() {
             </div>
             {/* Submit */}
             <Button
+              disabled={isSubmitting}
               type="submit"
-              className="w-full py-6 text-lg font-semibold cursor-pointer"
+              className={`w-full py-6 text-lg font-semibold ${isSubmitting ? " cursor-not-allowed" : " cursor-pointer"}`}
             >
-              Login
+              {isSubmitting ? "Submitting..." : "Login"}
             </Button>
           </form>
           {/* Footer */}

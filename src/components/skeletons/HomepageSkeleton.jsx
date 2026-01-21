@@ -6,6 +6,7 @@ export default function HomepageSkeleton() {
     <>
       <TopbarSkeleton />
       <NavbarSkeleton />
+      <AwarenessSkeleton />
       <DonationRequestsSkeleton />
     </>
   );
@@ -68,5 +69,52 @@ function NavbarSkeleton() {
         </div>
       </nav>
     </div>
+  );
+}
+function AwarenessSkeleton() {
+  return (
+    <section className="relative overflow-hidden">
+      {/* Background gradient & SVG shapes */}
+      <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-background to-background" />
+      <svg
+        className="absolute right-0 top-0 h-full w-[50%] opacity-10"
+        viewBox="0 0 600 600"
+        fill="none"
+      >
+        <path
+          d="M300 50C380 50 500 140 500 260C500 380 300 550 300 550C300 550 100 380 100 260C100 140 220 50 300 50Z"
+          fill="rgb(220 38 38)"
+        />
+      </svg>
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Text Skeleton */}
+        <div className="space-y-6">
+          {/* Heading */}
+          <Skeleton className="h-12 w-3/4 rounded" />
+          <Skeleton className="h-12 w-2/3 rounded" />
+
+          {/* Subtitle */}
+          <Skeleton className="h-5 w-5/6 rounded" />
+          <Skeleton className="h-5 w-4/6 rounded" />
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <Skeleton className="h-12 w-40 rounded" />
+            <Skeleton className="h-12 w-44 rounded" />
+          </div>
+        </div>
+
+        {/* Stats Card Skeleton */}
+        <div className="hidden md:flex justify-center">
+          <div className="bg-card border border-border rounded-2xl p-8 shadow-lg space-y-4 text-center w-full max-w-sm">
+            <Skeleton className="h-4 w-3/4 mx-auto rounded" />
+            <Skeleton className="h-10 w-1/2 mx-auto rounded" />
+            <Skeleton className="h-4 w-5/6 mx-auto rounded" />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

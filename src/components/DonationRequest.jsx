@@ -10,15 +10,10 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DonationRequestModal from "./DonationRequestModal";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "react-router";
+import { STATUS_STYLES } from "../lib/constant";
 
 export default function DonationRequest({ request }) {
   const { pathname } = useLocation();
-  const STATUS_STYLES = {
-    pending: "bg-yellow-100 text-yellow-800",
-    "in-progress": "bg-blue-100 text-blue-800",
-    done: "bg-green-100 text-green-800",
-    canceled: "bg-red-100 text-red-800",
-  };
 
   return (
     <Card>

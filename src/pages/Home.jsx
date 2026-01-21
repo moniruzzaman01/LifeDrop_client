@@ -3,6 +3,10 @@ import DonationRequests from "../components/DonationRequests";
 import { Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import axiosInstance from "../hooks/useAxios";
+import Awareness from "../components/Awareness";
+import WhyDonateBlood from "../components/WhyDonateBlood";
+import Statistics from "../components/Statistics";
+import FAQ from "../components/FAQ";
 
 export default function Home() {
   const [donationRequests, setDonationRequests] = useState([]);
@@ -39,6 +43,9 @@ export default function Home() {
 
   return (
     <div>
+      <section className="max-w-7xl mx-auto">
+        <Awareness />
+      </section>
       {/* donation requests section */}
       <section id="donation-requests" className="max-w-7xl mx-auto px-4 py-6">
         <div className=" flex items-baseline justify-between mb-6">
@@ -53,6 +60,15 @@ export default function Home() {
           </Link>
         </div>
         <DonationRequests donationRequests={donationRequests.slice(0, 6)} />
+      </section>
+      <section className="max-w-7xl mx-auto">
+        <WhyDonateBlood />
+      </section>
+      <section className="max-w-7xl mx-auto">
+        <Statistics />
+      </section>
+      <section className="max-w-7xl mx-auto">
+        <FAQ />
       </section>
     </div>
   );

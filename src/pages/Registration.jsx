@@ -22,18 +22,20 @@ import { toast } from "sonner";
 import { AuthContext } from "../context/auth/context";
 import axiosInstance from "../hooks/useAxios";
 import BgArt from "../components/BgArt";
+import { useNavigate } from "react-router";
 
 export default function Registration() {
   const [open, setOpen] = useState(false);
   const { createUser } = use(AuthContext);
   const [selectedDivision, setSelectedDivision] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {},
   });
@@ -43,6 +45,7 @@ export default function Registration() {
         createUser(values.email, values.password),
         axiosInstance.post("/users/create", values),
       ]);
+      navigate("/");
       toast.success("User created successfully!!!");
     } catch (error) {
       toast.error("Something went wrong with error: " + error.message);
@@ -277,10 +280,11 @@ export default function Registration() {
             </div>
             {/* Submit */}
             <Button
+              disabled={isSubmitting}
               type="submit"
-              className="w-full py-6 text-lg font-semibold cursor-pointer"
+              className={`w-full py-6 text-lg font-semibold ${isSubmitting ? " cursor-not-allowed" : "cursor-pointer"}`}
             >
-              Register as Donor
+              {isSubmitting ? "Submitting..." : "Register as Donor"}
             </Button>
           </form>
 

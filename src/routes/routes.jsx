@@ -9,6 +9,12 @@ import Users from "../dashboard/pages/Users";
 import MyDRPage from "../pages/MyDRPage";
 import CreateDRPage from "../dashboard/pages/CreateDRPage";
 import AllDRPage from "../pages/AllDRsPage";
+import AuthGuard from "./AuthGuard";
+import RoleGuard from "./RoleGuard";
+import { ROLES } from "../lib/constant";
+import Unauthorized from "../components/Unauthorized";
+import DRs from "../dashboard/pages/DRs";
+import MyProfile from "../pages/MyProfile";
 
 const routes = createBrowserRouter([
   {
@@ -16,10 +22,19 @@ const routes = createBrowserRouter([
     Component: Root,
     children: [
       { index: true, Component: Home },
-      { path: "my-donation-requests", Component: MyDRPage },
       {
-        path: "create-donation-request",
-        Component: CreateDRPage,
+        element: <AuthGuard />,
+        children: [
+          { path: "my-donation-requests", Component: MyDRPage },
+          {
+            path: "create-donation-request",
+            Component: CreateDRPage,
+          },
+          {
+            path: "my-profile",
+            Component: MyProfile,
+          },
+        ],
       },
       {
         path: "all-donation-requests",
@@ -32,17 +47,38 @@ const routes = createBrowserRouter([
     Component: Dashboard,
     children: [
       {
-        index: true,
-        Component: Landing,
-      },
-      {
-        path: "users",
-        Component: Users,
+        element: <AuthGuard />,
+        children: [
+          {
+            element: (
+              <RoleGuard allowedRoles={[ROLES.ADMIN, ROLES.VOLUNTEER]} />
+            ),
+            children: [
+              {
+                index: true,
+                Component: Landing,
+              },
+              {
+                path: "users",
+                Component: Users,
+              },
+              {
+                path: "donation-requests",
+                Component: DRs,
+              },
+              {
+                path: "account",
+                Component: MyProfile,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
   { path: "login", Component: Login },
   { path: "registration", Component: Registration },
+  { path: "unauthorized", Component: Unauthorized },
 ]);
 
 export default routes;

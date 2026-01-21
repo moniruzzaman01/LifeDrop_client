@@ -12,16 +12,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useRole from "../hooks/useRole";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = use(AuthContext) || {};
-  const navigate = useNavigate();
+  const { role, roleLoading } = useRole(user.email);
 
   const handleLogout = () => {
-    logOut().then(() => {
-      navigate("/login");
-    });
+    logOut();
   };
 
   return (
@@ -67,8 +66,13 @@ export default function Navbar() {
                       <DropdownMenuItem asChild className="cursor-pointer">
                         <Link to="/my-donation-requests">My DR</Link>
                       </DropdownMenuItem>
+                      {!roleLoading && role == "donor" && (
+                        <DropdownMenuItem asChild className="cursor-pointer">
+                          <Link to="/my-profile">My Profile</Link>
+                        </DropdownMenuItem>
+                      )}
                       <DropdownMenuItem asChild className="cursor-pointer">
-                        <Link to="/dashboard">Profile</Link>
+                        <Link to="/dashboard">Dashboard</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={handleLogout}

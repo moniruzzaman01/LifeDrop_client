@@ -1,9 +1,4 @@
-import {
-  ChevronRight,
-  CirclePile,
-  CircleUserRound,
-  Droplets,
-} from "lucide-react";
+import { ChevronRight, CircleUserRound, Droplets } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,7 +15,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
-const items = [
+const itemsGroup = [
   {
     title: "Users",
     icon: CircleUserRound,
@@ -43,28 +38,12 @@ const items = [
       },
     ],
   },
+];
+const items = [
   {
-    title: "Donations",
+    title: "Drs",
     icon: Droplets,
-    subItems: [
-      {
-        title: "Expired",
-        url: "donation/expired",
-      },
-      {
-        title: "Pending",
-        url: "donation/pending",
-      },
-      {
-        title: "Completed",
-        url: "donation/complete",
-      },
-    ],
-  },
-  {
-    title: "Inventory",
-    icon: CirclePile,
-    subItems: [],
+    to: "donation-requests",
   },
 ];
 
@@ -73,7 +52,7 @@ export function NavMain() {
     <SidebarGroup>
       <SidebarGroupLabel>Important Links</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
+        {itemsGroup.map((item) => (
           <Collapsible key={item.title} asChild className="group/collapsible">
             <SidebarMenuItem>
               <CollapsibleTrigger
@@ -102,6 +81,20 @@ export function NavMain() {
             </SidebarMenuItem>
           </Collapsible>
         ))}
+        <SidebarMenuItem>
+          {items.map((item, idx) => (
+            <SidebarMenuButton
+              className="cursor-pointer transition duration-300"
+              key={idx}
+              asChild
+            >
+              <Link to={item.to}>
+                {<item.icon />}
+                <span>{item.title}</span>
+              </Link>
+            </SidebarMenuButton>
+          ))}
+        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   );

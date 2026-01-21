@@ -9,6 +9,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./NavMain";
+import { Link } from "react-router";
 
 const data = {
   projects: [
@@ -34,7 +35,10 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className=" flex items-baseline gap-1 cursor-pointer hover:bg-secondary transition duration-300 rounded-lg">
+        <Link
+          to="/"
+          className=" flex items-baseline gap-1 cursor-pointer hover:bg-secondary transition duration-300 rounded-lg"
+        >
           <div className=" flex items-center size-8 justify-center rounded-lg">
             🩸
           </div>
@@ -43,7 +47,7 @@ export function AppSidebar() {
               Life Drop
             </span>
           </div>
-        </div>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <NavMain />
