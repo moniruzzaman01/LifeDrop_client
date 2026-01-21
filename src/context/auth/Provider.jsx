@@ -31,7 +31,7 @@ export default function Provider({ children }) {
             "/auth/generate-token",
             {
               email: currentUser.email,
-            }
+            },
           );
           if (response.data) {
             const { user: loggedInUser, token } = response.data;
@@ -54,6 +54,7 @@ export default function Provider({ children }) {
 
   const authConfig = {
     user,
+    setUser,
     createUser,
     globalLoading,
     loginUser,

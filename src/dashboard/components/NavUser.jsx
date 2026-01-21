@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 import { use } from "react";
 import { AuthContext } from "../../context/auth/context";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
@@ -85,9 +85,11 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="cursor-pointer">
-                <BadgeCheck />
-                Account
+              <DropdownMenuItem className="cursor-pointer" asChild>
+                <Link to="account">
+                  <BadgeCheck />
+                  Account
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer">
                 <Bell />

@@ -14,6 +14,7 @@ import RoleGuard from "./RoleGuard";
 import { ROLES } from "../lib/constant";
 import Unauthorized from "../components/Unauthorized";
 import DRs from "../dashboard/pages/DRs";
+import MyProfile from "../pages/MyProfile";
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const routes = createBrowserRouter([
           {
             path: "create-donation-request",
             Component: CreateDRPage,
+          },
+          {
+            path: "my-profile",
+            Component: MyProfile,
           },
         ],
       },
@@ -60,6 +65,10 @@ const routes = createBrowserRouter([
               {
                 path: "donation-requests",
                 Component: DRs,
+              },
+              {
+                path: "account",
+                Component: MyProfile,
               },
             ],
           },
