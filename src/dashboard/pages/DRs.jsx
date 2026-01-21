@@ -23,7 +23,6 @@ export default function DRs() {
         setLoading(false);
       });
   }, []);
-  console.log(donationRequests);
 
   if (loading) {
     return <TableSkeleton />;
