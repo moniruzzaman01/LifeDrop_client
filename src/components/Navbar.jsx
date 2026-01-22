@@ -1,6 +1,6 @@
 import { use, useState } from "react";
 import { Menu, User, X } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { NAVLINKS } from "../lib/constant";
 import { AuthContext } from "../context/auth/context";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -17,7 +17,7 @@ import useRole from "../hooks/useRole";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = use(AuthContext) || {};
-  const { role, roleLoading } = useRole(user.email);
+  const { role, roleLoading } = useRole(user?.email);
 
   const handleLogout = () => {
     logOut();
